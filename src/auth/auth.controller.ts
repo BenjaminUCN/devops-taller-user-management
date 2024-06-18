@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   HttpException,
@@ -18,7 +19,8 @@ export class AuthController {
     const user = await this.authService.loginUser(body);
 
     if (!user) {
-      throw new HttpException('Invalid Credentials.', HttpStatus.BAD_REQUEST);
+      throw new BadRequestException('Invalid Credentials.');
+      // throw new HttpException('Invalid Credentials.', HttpStatus.BAD_REQUEST);
     }
 
     return user;
