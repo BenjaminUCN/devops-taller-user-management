@@ -15,5 +15,27 @@ spec:
       containers:
       - name: user-management
         image: benjaminucn/devops-taller-user-management
+        envFrom: 
+        - secretRef:
+            name: user-management-secret
         ports:
         - containerPort: 3001
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "80m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-management
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 3001
+    targetPort: 3001
+  selector:
+    app: user-management

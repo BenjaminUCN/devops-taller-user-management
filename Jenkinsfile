@@ -1,6 +1,7 @@
 pipeline {
     environment{
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
+        KUBECONFIG = credentials('kubeconfig')
         APP_NAME = "benjaminucn/devops-taller-user-management"
         DOCKER_IMAGE = ''
     }
