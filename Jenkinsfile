@@ -22,7 +22,8 @@ pipeline {
         stage ('Build docker image'){
             steps{ 
                 sh 'docker build -t $APP_NAME .'
-                sh 'docker tag $APP_NAME $APP_NAME:$BUILD_NUMBER'
+                sh 'docker tag $APP_NAME $APP_NAME:dev'
+                sh 'docker tag $APP_NAME $APP_NAME:dev-$BUILD_NUMBER'
             }
         }
         stage('Login to dockerhub') {
@@ -32,8 +33,8 @@ pipeline {
         }
         stage('Push image') {
             steps {
-                sh 'docker push $APP_NAME'
-                sh 'docker push $APP_NAME:$BUILD_NUMBER'
+                sh 'docker push $APP_NAME:dev'
+                sh 'docker push $APP_NAME:dev-$BUILD_NUMBER'
             }
         }
         stage ('Deploy to kubernetes'){
