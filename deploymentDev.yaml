@@ -17,3 +17,13 @@ spec:
         image: benjaminucn/devops-taller-user-management:dev
         ports:
         - containerPort: 3001
+        envFrom: 
+        - secretRef:
+            name: user-management-secret
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "80m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m" 
