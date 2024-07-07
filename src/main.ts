@@ -10,7 +10,6 @@ async function bootstrap() {
 
   app.enableCors();
   app.useGlobalFilters(new AllExceptionsFilter());
-  console.log('ola planeta')
 
   await app.listen(configService.getAppPort() || 3001);
 }
