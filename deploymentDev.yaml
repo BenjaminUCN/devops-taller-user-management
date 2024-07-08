@@ -1,28 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-management
+  name: user-management-dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user-management
+      app: user-management-dev
   template:
     metadata:
       labels:
-        app: user-management
+        app: user-management-dev
     spec:
       containers:
-      - name: user-management
-        image: benjaminucn/devops-taller-user-management
-        envFrom: 
-        - secretRef:
-            name: user-management-secret
+      - name: user-management-dev
+        image: benjaminucn/devops-taller-user-management:dev
         ports:
         - containerPort: 3001
         envFrom: 
         - secretRef:
-            name: user-management-secret
+            name: user-management-dev-secret
         resources:
           requests:
             memory: "64Mi"
